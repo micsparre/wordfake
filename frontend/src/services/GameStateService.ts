@@ -154,7 +154,7 @@ export function completeGame(
 
   // Update stats
   if (isWin) {
-    recordWin(currentGame.guesses.length + 1); // +1 because we haven't added the final guess yet
+    recordWin(currentGame.guesses.length); // The final guess is already in the array
   } else {
     recordLoss();
   }
