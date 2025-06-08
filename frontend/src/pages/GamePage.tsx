@@ -72,7 +72,9 @@ function GamePage() {
           <strong className="font-bold">Error: </strong>
           <span>{error}</span>
         </div>
-        <p className="text-gray-600">Please refresh the page or check the console for more details.</p>
+        <p className="text-gray-600">
+          Please refresh the page or check the console for more details.
+        </p>
       </div>
     );
   }

@@ -16,7 +16,6 @@ function StatsPage() {
     );
   }, []);
 
-
   if (!stats) {
     return <div className="text-center">Loading stats...</div>;
   }
@@ -104,7 +103,6 @@ function StatsPage() {
           )}
         </div>
       </div>
-
     </div>
   );
 }

@@ -49,7 +49,10 @@ export function getPuzzleForDate(date: Date): Puzzle {
     const fakeWords = loadFakeWords();
 
     if (realWords.length === 0 || fakeWords.length === 0) {
-      console.error('Word lists are empty:', { realWords: realWords.length, fakeWords: fakeWords.length });
+      console.error('Word lists are empty:', {
+        realWords: realWords.length,
+        fakeWords: fakeWords.length,
+      });
       throw new Error('Word lists not loaded properly');
     }
 
