@@ -6,9 +6,9 @@ import StatsPage from './pages/StatsPage';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="h-full bg-gray-50 flex flex-col">
         <Navigation />
-        <main className="container mx-auto px-4 py-8 max-w-md">
+        <main className="container mx-auto px-4 py-8 max-w-md flex-1 overflow-y-auto">
           <Routes>
             <Route path="/" element={<GamePage />} />
             <Route path="/stats" element={<StatsPage />} />
