@@ -10,6 +10,7 @@ import {
 import type { Puzzle } from '../services/PuzzleService';
 import type { DailyGameState } from '../services/GameStateService';
 import WordGrid from '../components/WordGrid';
+import TestControls from '../components/TestControls';
 
 function GamePage() {
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
@@ -42,6 +43,33 @@ function GamePage() {
       setError(err instanceof Error ? err.message : 'Failed to load game');
     }
   }, []);
+
+  const handleDateChange = () => {
+    // Reload the game with the new date
+    try {
+      const todaysPuzzle = getTodaysPuzzle();
+      setPuzzle(todaysPuzzle);
+
+      let currentGame = loadGame();
+
+      if (!currentGame || currentGame.puzzleId !== todaysPuzzle.id) {
+        currentGame = initializeGame(todaysPuzzle.id);
+      }
+
+      setGameState(currentGame);
+      setGameResult(null);
+
+      if (currentGame.status === 'complete') {
+        const isWin = currentGame.guesses.includes(
+          todaysPuzzle.words[todaysPuzzle.fakeWordIndex]
+        );
+        setGameResult(isWin ? 'win' : 'loss');
+      }
+    } catch (err) {
+      console.error('Error loading game after date change:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load game');
+    }
+  };
 
   const handleWordClick = (word: string) => {
     if (!puzzle || !gameState || gameState.status === 'complete') {
@@ -150,6 +178,8 @@ function GamePage() {
           </div>
         )}
       </div>
+
+      {import.meta.env.DEV && <TestControls onDateChange={handleDateChange} />}
     </div>
   );
 }

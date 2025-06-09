@@ -205,7 +205,7 @@ cd frontend && npx lint-staged
 
 The puzzle generation starts from a configurable zero date:
 ```typescript
-const ZERO_DATE = new Date('2025-06-08T00:00:00.000Z');
+const ZERO_DATE = new Date('2025-06-07T00:00:00.000Z');
 ```
 
 This ensures consistent daily puzzles across all users.

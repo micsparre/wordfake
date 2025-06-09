@@ -79,7 +79,7 @@ function StatsPage() {
                   <div className="text-sm font-medium text-gray-700 w-4">
                     {guessNumber}
                   </div>
-                  <div className="flex-1 bg-gray-200 rounded">
+                  <div className="flex-1">
                     {count > 0 && (
                       <div
                         className="bg-blue-500 rounded h-6 flex items-center justify-end pr-2 transition-all duration-300"

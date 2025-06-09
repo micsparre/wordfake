@@ -1,4 +1,5 @@
 import { loadRealWords, loadFakeWords } from './WordLoader';
+import { getCurrentGameDate } from './TestUtils';
 
 export interface Puzzle {
   id: string;
@@ -7,7 +8,7 @@ export interface Puzzle {
   date: Date;
 }
 
-const ZERO_DATE = new Date('2025-06-08T00:00:00.000Z');
+const ZERO_DATE = new Date('2025-06-08T12:00:00.000Z');
 
 function daysBetween(startDate: Date, endDate: Date): number {
   const msPerDay = 24 * 60 * 60 * 1000;
@@ -21,6 +22,9 @@ function daysBetween(startDate: Date, endDate: Date): number {
     endDate.getMonth(),
     endDate.getDate()
   );
+
+  console.log(end.toISOString(), start.toISOString());
+
   return Math.floor((end.getTime() - start.getTime()) / msPerDay);
 }
 
@@ -97,7 +101,7 @@ export function getPuzzleForDate(date: Date): Puzzle {
 }
 
 export function getTodaysPuzzle(): Puzzle {
-  const today = new Date();
+  const today = getCurrentGameDate();
   today.setHours(0, 0, 0, 0); // Normalize to start of day
   return getPuzzleForDate(today);
 }
