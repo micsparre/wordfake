@@ -14,18 +14,20 @@ A daily word game where players must identify the fake word among 5 options (4 r
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm
 
 ### Development Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd wordfake
    ```
 
 2. **Install dependencies**
+
    ```bash
    cd frontend
    npm install
@@ -79,16 +81,19 @@ wordfake/
 ### Key Services
 
 #### PuzzleService
+
 - Implements the stride-4 word selection algorithm
 - Provides deterministic daily puzzles based on date
 - Uses seeded random for reproducible word shuffling
 
 #### GameStateService
+
 - Manages localStorage persistence for game state and statistics
 - Tracks daily game progress, win/loss streaks, and guess distribution
 - Handles game completion and stat recording
 
 #### WordLoader
+
 - Loads word lists from static text files using Vite's `?raw` import
 - Processes words to uppercase and filters empty lines
 
@@ -108,6 +113,7 @@ shuffle(words)  // Deterministic Fisher-Yates using date as seed
 ### Local Storage Schema
 
 **Daily Game State** (`wordfake.dailyGame.v1`):
+
 ```typescript
 {
   puzzleId: string;      // YYYY-MM-DD format
@@ -118,12 +124,13 @@ shuffle(words)  // Deterministic Fisher-Yates using date as seed
 ```
 
 **Statistics** (`wordfake.stats.v1`):
+
 ```typescript
 {
-  played: number;           // Total games played
-  won: number;             // Total games won
-  currentStreak: number;   // Current win streak
-  maxStreak: number;       // Best win streak
+  played: number; // Total games played
+  won: number; // Total games won
+  currentStreak: number; // Current win streak
+  maxStreak: number; // Best win streak
   guessHistogram: [number, number, number, number]; // Wins by guess count
 }
 ```
@@ -176,6 +183,7 @@ cd frontend && npx lint-staged
 ## 📱 Features
 
 ### Core Features ✅
+
 - Daily word puzzles with deterministic generation
 - Local game state persistence
 - Statistics tracking with win streaks and guess distribution
@@ -184,6 +192,7 @@ cd frontend && npx lint-staged
 - Visual feedback for correct/incorrect guesses
 
 ### Future Enhancements (Not in POC)
+
 - E2E testing with Cypress
 - Server-side validation
 - User accounts and cloud sync
@@ -204,19 +213,25 @@ cd frontend && npx lint-staged
 ### Zero Date
 
 The puzzle generation starts from a configurable zero date:
+
 ```typescript
-const ZERO_DATE = new Date('2025-06-07T00:00:00.000Z');
+const ZERO_DATE = new Date("2025-06-07T00:00:00.000Z");
 ```
 
 This ensures consistent daily puzzles across all users.
 
 ## 📄 License
 
-This project is a proof of concept. See repository for license details.
+Copyright (c) 2026 Michael Sparre. All rights reserved.
+
+This repository is public for visibility, but no permission is granted to
+copy, modify, redistribute, host, or reuse the code, assets, word lists, game
+logic, or other repository contents. See [LICENSE](LICENSE) for details.
 
 ## 🤝 Contributing
 
 This is a POC project. For production use, consider:
+
 - Adding comprehensive test coverage
 - Implementing server-side word validation
 - Adding accessibility features
